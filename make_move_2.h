@@ -1,0 +1,1 @@
+int make_move_2(int turn);
