@@ -29,9 +29,9 @@ good that you should ask!
 Here's how one turn of bttt looks like:
 
 1.  The game master – who is the only person who can see the board – tells you
-    that it's time for your turn, and the number of the turn, e.g. "turn 3".
+    that it's **time for your turn**, and the number of the turn, e.g. "turn 3".
 2.  You then have a good, hard think about it and tell the game master
-    which square you would like to place your token on for this turn.
+    **which square** you would like to place your token on for this turn.
 3.  Since you can't see the board, it's impossible for you to know if the square
     you attempted to place your token on has already been taken by your 
     opponent (in fact, you don't even know if you're the first or second
