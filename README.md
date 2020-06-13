@@ -67,11 +67,11 @@ you that you chose a square occupied by your opponent (**rule 3**).
 The function should return a number between 0 and 8 inclusively, corresponding
 to the square you wish to place your token on (**rule 2**). 
 The squares are numbered thusly:
-
+`
 0 1 2
 3 4 5
 6 7 8
-
+`
 Should your function ever return any value outside the interval 0 to 8, 
 you forfeit the game immediately (see **rule 4**).
 
