@@ -19,5 +19,5 @@
     signifying the square you'd like to place your token on.
 */
 int make_move_1(int turn) {
-  return rand() % 9;
+  return -1;
 }
