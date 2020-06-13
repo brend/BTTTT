@@ -41,8 +41,8 @@ Here's how one turn of bttt looks like:
     in a row, should you keep choosing squares that are already occupied by 
     your opponent.
 4.  You **immediately forfeit** the game should you
-    a.  Choose a square that does not exist
-    b.  Choose a square that you have chosen before
+    1.  Choose a square that does not exist
+    2.  Choose a square that you have chosen before
 
 ## Creating a Player
 
