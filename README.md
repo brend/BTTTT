@@ -13,11 +13,11 @@ regular tic tac toe (ttt), in that two players alternatingly place their tokens
 on a 3x3 game board, and whosoever manages to complete a string of three of
 their own tokens, be it in a row, column, or diagonal, wins.
 
-X . O
-. X O
-O X X
+    X . O
+    . X O
+    O X X
 
-^ here X has won on a diagonal
+    ^ here X has won on a diagonal
 
 The difference between bttt and ttt is, that in bttt you can't see the board
 (hence the "blind" part)!
@@ -68,9 +68,9 @@ The function should return a number between 0 and 8 inclusively, corresponding
 to the square you wish to place your token on (**rule 2**). 
 The squares are numbered thusly:
 
-`0 1 2
-3 4 5
-6 7 8`
+    0 1 2
+    3 4 5
+    6 7 8
 
 Should your function ever return any value outside the interval 0 to 8, 
 you forfeit the game immediately (see **rule 4**).
