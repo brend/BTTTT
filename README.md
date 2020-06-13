@@ -82,7 +82,7 @@ mean that you played the same square twice... Which leads to immediate forfeit
 
 ## How to Run the Tournament
 
-Place your function `make_move_1` into the file called *make_move_1* (easy!),
+Place your function `make_move_1` into the file called *make_move_1.c* (easy!),
 and you're good to go!
 
 Just enter the project directory in your shell and type `make` to compile
