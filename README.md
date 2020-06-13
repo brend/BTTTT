@@ -1,6 +1,6 @@
 # Welcome to the Blind Tic Tac Toe Tournament!
 
-Dear Participant! 
+Dear Participant! 🎫
 
 If you are reading this, it means that you (yes, you!) have been chosen
 out of possibly millions of applicants to take part in the most prestigious
