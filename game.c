@@ -124,8 +124,6 @@ void run() {
     }
     
     ++turn;
-    
-    printf("\n\n");
   }
 }
 

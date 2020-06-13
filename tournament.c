@@ -9,7 +9,7 @@ int main() {
   printf("Welcome to the Blind Tic Tac Toe tournament!\n%d games will be played.\nMay the best AI win.\n\n", game_count);
   
   for (int game = 0; game < game_count; ++game) {
-    int result = system("./game");
+    int result = system("bin/game");
     
     if (result < 0 || result > 2) {
       printf("*** Error: game returned %d\n", result);
