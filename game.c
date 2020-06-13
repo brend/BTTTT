@@ -74,8 +74,7 @@ void print_board(int *board) {
     token[board[6]], token[board[7]], token[board[8]]);
 }
 
-void run() {
-  
+int main() {
   srand(time(NULL));
   
   int turn = 0;
@@ -90,7 +89,7 @@ void run() {
     
     if (result1 < 0) {
       printf("player 2 wins\n");
-      return;
+      return 2;
     }
     
     printf("player 1 choses %d\n", result1);
@@ -99,14 +98,14 @@ void run() {
     
     if (over(board)) {
       printf("player 1 wins!\n");
-      return;
+      return 1;
     }
     
     int result2 = attempt(board, symbol2, attempts2, turn);
     
     if (result2 < 0) {
       printf("player 1 wins\n");
-      return;
+      return 1;
     }
     
     printf("player 2 choses %d\n", result2);
@@ -115,18 +114,16 @@ void run() {
     
     if (over(board)) {
       printf("player 2 wins!\n");
-      return;
+      return 2;
     }
     
     if (full(board)) {
       printf("it's a tie!\n");
-      return;
+      return 0;
     }
     
     ++turn;
   }
-}
-
-int main() {
-  run();
+  
+  return 0;
 }

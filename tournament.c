@@ -1,15 +1,44 @@
 #include <stdlib.h> 
 #include <stdio.h>
+#include <sys/wait.h>
+#include <sys/errno.h>
+#include <string.h>
 
-int main() {
-  const int game_count = 10;
+const int default_game_count = 10;
+
+int main(int argc, const char **argv) {  
+  int game_count = default_game_count;
+  
+  if (argc > 1) {
+    game_count = atoi(argv[1]);
+    
+    if (game_count < 1) {
+      printf("I don't like the game count of %s; using %d instead.\n", argv[1], default_game_count);
+      game_count = default_game_count;
+    }
+  }
+  
   int score1 = 0;
   int score2 = 0;
   
   printf("Welcome to the Blind Tic Tac Toe tournament!\n%d games will be played.\nMay the best AI win.\n\n", game_count);
   
   for (int game = 0; game < game_count; ++game) {
-    int result = system("bin/game");
+    printf("*** GAME %d BEGINS!\n", game);
+    
+    int status = system("bin/game");
+    
+    if (status < 0) {
+      printf("*** error executing game: %s\n", strerror(errno));
+      continue;
+    }
+    
+    if (!WIFEXITED(status)) {
+      printf("*** game exited abnormally\n");
+      continue;
+    }
+    
+    int result = WEXITSTATUS(status);
     
     if (result < 0 || result > 2) {
       printf("*** Error: game returned %d\n", result);

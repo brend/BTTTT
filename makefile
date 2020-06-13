@@ -1,7 +1,7 @@
-
+GAME_COUNT=10
 
 run: dirs bttt tournament
-	bin/tournament
+	bin/tournament $(GAME_COUNT)
 	
 bttt: game mm1 mm2
 	gcc -Wall obj/game.o obj/make_move_1.o obj/make_move_2.o -o bin/game
