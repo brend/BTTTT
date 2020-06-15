@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "make_move_1.h"
-#include "make_move_2.h"
-
 const int empty = 0;
 const int symbol1 = 1;
 const int symbol2 = 2;
@@ -13,28 +10,32 @@ int invalid(int move) {
   return move < 0 || move >= 9;
 }
 
-int other(int player) {
-  return (player == symbol1) ? symbol2 : symbol1;
-}
-
-int attempt(int* board, int player, int* attempts, int turn) {
-  int move = (player == symbol1) ? make_move_1(turn) : make_move_2(turn);
+int attempt(
+  int* board, 
+  int player, 
+  int (*make_move)(int),
+  const char *name,
+  int* attempts, 
+  int turn,
+  const char *other_name) 
+{
+  int move = make_move(turn);
   
   if (invalid(move)) {
-    printf("player %d made an invalid move (%d)\n", player, move);
+    printf("%s made an invalid move (%d)\n", name, move);
     return -1;
   }
   
   if (attempts[move] != 0) {
-    printf("player %d chose a square they chose once before (%d)\n", player, move);
+    printf("%s chose a square they chose once before (%d)\n", name, move);
     return -2;
   }
   
   attempts[move] += 1;
 
   if (board[move] != empty) {
-    printf("player %d attempts %d, discovers existing token of player %d\n", player, move, other(player));
-    return attempt(board, player, attempts, turn);
+    printf("%s attempts %d, discovers existing token of %s\n", name, move, other_name);
+    return attempt(board, player, make_move, name, attempts, turn, other_name);
   }
   
   board[move] = player;
@@ -74,46 +75,51 @@ void print_board(int *board) {
     token[board[6]], token[board[7]], token[board[8]]);
 }
 
-int main() {
-  srand(time(NULL));
-  
+int play_game(
+  int (*player1)(int),
+  const char *name1,
+  int (*player2)(int),
+  const char *name2
+) {  
   int turn = 0;
   int board[] = {0,0,0, 0,0,0, 0,0,0};
   int attempts1[] = {0,0,0, 0,0,0, 0,0,0};
   int attempts2[] = {0,0,0, 0,0,0, 0,0,0};
   
+  printf("*** X: %s\n*** O: %s\n", name1, name2);
+  
   while (turn < 9) {
     printf("*** turn %d\n", turn);
     
-    int result1 = attempt(board, symbol1, attempts1, turn);
+    int result1 = attempt(board, symbol1, player1, name1, attempts1, turn, name2);
     
     if (result1 < 0) {
-      printf("player 2 wins\n");
+      printf("%s wins\n", name2);
       return 2;
     }
     
-    printf("player 1 choses %d\n", result1);
+    printf("%s choses %d\n", name1, result1);
     
     print_board(board);
     
     if (over(board)) {
-      printf("player 1 wins!\n");
+      printf("%s wins!\n", name1);
       return 1;
     }
     
-    int result2 = attempt(board, symbol2, attempts2, turn);
+    int result2 = attempt(board, symbol2, player2, name2, attempts2, turn, name1);
     
     if (result2 < 0) {
-      printf("player 1 wins\n");
+      printf("%s wins\n", name1);
       return 1;
     }
     
-    printf("player 2 choses %d\n", result2);
+    printf("%s choses %d\n", name2, result2);
     
     print_board(board);
     
     if (over(board)) {
-      printf("player 2 wins!\n");
+      printf("%s wins!\n", name2);
       return 2;
     }
     
